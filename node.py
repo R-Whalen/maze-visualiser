@@ -15,7 +15,7 @@ class Node:
         self.weight = 1
         self.distanceFromStart = float('inf') # float('inf') acts as an absolute upper bound
         self.distanceToEnd= float('inf')
-        self.color = None
+        self.colour = None
         self.obstacle = None
         self.parent = None
         
@@ -23,7 +23,7 @@ class Node:
     def reset(self):
         self.distanceFromStart = float('inf')
         self.distanceToEnd = float('inf')
-        self.color = None
+        self.colour = None
         self.parent = None
         self.obstacle = False
         
