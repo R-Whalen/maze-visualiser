@@ -18,3 +18,9 @@ HOVERED = (0, 102, 0)
 PATH_COLOR = (255, 165, 0)
 EXPAND_COLOR = (130, 232, 130)
 VISITED_COLOR = (179, 249, 255)
+
+# setup fonts
+pygame.font.init()
+lg_font = pygame.font.SysFont('arial', 75)
+md_font = pygame.font.SysFont('arial', 50)
+sm_font = pygame.font.SysFont('arial', 25)
