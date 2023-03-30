@@ -21,6 +21,6 @@ VISITED_COLOUR = (179, 249, 255)
 
 # setup fonts
 pygame.font.init()
-lg_font = pygame.font.SysFont('arial', 75)
-md_font = pygame.font.SysFont('arial', 50)
-sm_font = pygame.font.SysFont('arial', 25)
+fontLG = pygame.font.SysFont('arial', 75)
+fontMD = pygame.font.SysFont('arial', 50)
+fontSM = pygame.font.SysFont('arial', 25)
