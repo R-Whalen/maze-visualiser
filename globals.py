@@ -28,3 +28,5 @@ fontSM = pygame.font.SysFont(fontType, 25)
 # setup main menu text
 menuHeader = fontLG.render('Pathfinding Algorithms Visualisation', True, BLACK)
 menuAuthor = fontSM.render('by Robert Whalen', True, BLACK)
+# setup maze generation option text
+chooseMaze = fontMD.render('Pick maze generation algorithm(optional):', True, BLACK)
