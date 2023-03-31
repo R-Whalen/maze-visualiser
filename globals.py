@@ -25,8 +25,11 @@ fontType = 'arial'
 fontLG = pygame.font.SysFont(fontType, 75)
 fontMD = pygame.font.SysFont(fontType, 50)
 fontSM = pygame.font.SysFont(fontType, 25)
+# --- STATIC TEXT GENERATION BELOW (COLOURS NOT PROGRAMMATIC) ---
 # setup main menu text
-menuHeader = fontLG.render('Pathfinding Algorithms Visualisation', True, BLACK)
+menuHeader = fontLG.render('Pathfinding Algorithm Visualisation', True, BLACK)
 menuAuthor = fontSM.render('by Robert Whalen', True, BLACK)
 # setup maze generation option text
-chooseMaze = fontMD.render('Pick maze generation algorithm(optional):', True, BLACK)
+chooseMaze = fontMD.render('Maze generation algorithm(optional):', True, BLACK)
+# setup pathfinding algorithm option text
+choosePathfind = fontMD.render('Pathfinding algorithms:', True, BLACK)
