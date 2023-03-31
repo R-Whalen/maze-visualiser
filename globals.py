@@ -25,3 +25,6 @@ fontType = 'arial'
 fontLG = pygame.font.SysFont(fontType, 75)
 fontMD = pygame.font.SysFont(fontType, 50)
 fontSM = pygame.font.SysFont(fontType, 25)
+# setup main menu text
+menuHeader = fontLG.render('Pathfinding Algorithms Visualisation', True, BLACK)
+menuAuthor = fontSM.render('by Robert Whalen', True, BLACK)
