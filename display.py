@@ -16,8 +16,8 @@ fps = 0
 # user without not entirely breaking the responsiveness of the pygame application 
 w = 1920
 h = 1080
-menu = pygame.Surface((w, h))
-window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+menu = pygame.Surface((1920, 1080))
+window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 width, height = window.get_width(), window.get_height()
 cellWidth, cellHeight = width / cells, height / cells
 
@@ -93,7 +93,6 @@ def redrawWindow(start, end, board, wg=False, running=True):
             elif event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_q, pygame.K_ESCAPE):
                     sys.exit()
-                        
         clock.tick(fps) # +1 pygame tick
         
     pygame.display.update()
