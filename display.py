@@ -29,6 +29,17 @@ def updateWeights(start, end, board):
             if node.weight > 1 and node not in (start, end):
                 number = fontNum.render(str(node.weight), True, BLACK)
                 window.blit(number, (node.x * cellWidth + cellWidth // 2.5, node.y * cellHeight + 2))
+             
+# basic util function for getting mouse coords cast to integers   
+def getMouseCoords():
+        x, y = pygame.mouse.get_pos()
+        x = int(x / cellWidth)
+        y = int(y / cellHeight)
+        
+        if 0 <= x < cells and 0 <= y < cells: 
+            return x, y
+        
+        raise Exception('Selected coordinate is out of bounds.')
 
 # renders / fills in colour and walls for nodes
 def updateTiles(start, end, board):
@@ -61,14 +72,14 @@ def updateTiles(start, end, board):
                 fillBlock(END_COLOUR, block)
 
 # acts as our display function to refresh the screen state manually after all calculations have been made
-def redrawWindow(start, end, board, wg=False, running=True):
+def redrawWindow(start, end, board, weighted=False, running=True):
     global fps
     
     window.fill(WHITE)
     updateTiles(start, end, board) # draw / handle nodes
     
     # node weight rendering routing
-    if wg is True:
+    if weighted is True:
         updateWeights(start, end, board)
     
     # taking user input
