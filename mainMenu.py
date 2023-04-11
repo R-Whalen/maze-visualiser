@@ -6,70 +6,97 @@ from globals import *
 def blit(vis, pos):
     return menu.blit(vis, pos)
 
-def genText(hover, maze, pathfind, eMaze, ePathfind, quickMaze = False, weighted = False):
+def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze = False, weighted = False):
     # menu header + author
     blit(menuHeader, (170,50))
     blit(menuAuthor, (1000, 140))
     
-    mazeColours = [BLACK] * 3
-    colours = [BLACK] * 1
+    # calc pathfinding + maze generation colour array lengths
+    pathfindAlgsLength, mazeGenAlgsLength = 0, 0
+    if (len(pathfindAlgs)):
+        pathfindAlgsLength = len(pathfindAlgs) - 1
+    if (len(mazeGenAlgs)):
+        mazeGenAlgsLength = len(mazeGenAlgs) - 1
+    
+    pathfindingColours = [BLACK] * len(pathfindAlgs)
+    mazeColours = [BLACK] * (len(mazeGenAlgs) + 2) # add 2 indices for quickMaze and weighting
     # set selected to black
     if ePathfind is not None:
-        colours[ePathfind] = BLACK
+        pathfindingColours[ePathfind] = BLACK
     if eMaze is not None: 
-        colours[eMaze] = BLACK
-        
+        mazeColours[eMaze] = BLACK
+
+    # hover colour transition handling
     if hover is not None:
-        if hover <= 2:
-            colours[hover] = HOVERED
-        elif hover != 7:
-            mazeColours[hover - 1] = HOVERED
+        if hover < len(pathfindAlgs):
+            pathfindingColours[hover] = HOVERED
         else:
-            mazeColours[4] = HOVERED
+            mazeColours[hover - len(pathfindAlgs)] = HOVERED
             
     if pathfind is not None:
-        colours[pathfind] = END_COLOUR
+        pathfindingColours[pathfind] = END_COLOUR
     if maze is not None:
         mazeColours[maze] = END_COLOUR
     if quickMaze is not False:
-        mazeColours[1] = END_COLOUR
+        mazeColours[len(mazeGenAlgs)] = END_COLOUR
     if weighted is not False:
-        mazeColours[2] = END_COLOUR
+        mazeColours[len(mazeGenAlgs) + 1] = END_COLOUR
     
+    # pathfinding text
+    blit(choosePathfind, (85, 500)) # heading
+    pfAStar = fontSM.render('* A* ALGORITHM', True, pathfindingColours[0])
+    renderPfA = blit(pfAStar, (85, 575))
+    
+    # maze generation options text
+    blit(chooseMaze, (85, 750)) # heading
+    mgEller = fontSM.render('* ELLER\'S ALGORITHM', True, mazeColours[0])
+    renderMgEller = blit(mgEller, (85, 825))
+    mgKruskal = fontSM.render('* KRUSKAL\'S ALGORITHM', True, mazeColours[1])
+    renderMgKruskal = blit(mgKruskal, (400, 825))
+    mgPrim = fontSM.render('* PRIM\'S ALGORITHM', True, mazeColours[2])
+    renderMgPrim = blit(mgPrim, (85, 875))
+    mgBacktracking = fontSM.render('* RECURSIVE BACKTRACKING', True, mazeColours[3])
+    renderMgBacktracking = blit(mgBacktracking, (400, 875))
+    
+    # variable blitted text 
     if quickMaze is False:
-        quickMazeText = fontSM.render('Instant Maze Generation?', True, mazeColours[1])
+        quickMazeText = fontSM.render('Instant Maze Generation?', True, mazeColours[len(mazeGenAlgs)])
     else:
-        quickMazeText = fontSM.render('Instant Maze Generation!', True, mazeColours[1])
+        quickMazeText = fontSM.render('Instant Maze Generation!', True, mazeColours[len(mazeGenAlgs)])
         
     if weighted is False:
-        weightedText = fontSM.render('Randomise cell weights?', True, mazeColours[2])
+        weightedText = fontSM.render('Randomise cell weights?', True, mazeColours[len(mazeGenAlgs) + 1])
     else:
-        weightedText = fontSM.render('Randomise cell weights!', True, mazeColours[2])
+        weightedText = fontSM.render('Randomise cell weights!', True, mazeColours[len(mazeGenAlgs) + 1])
         
-    renderQuickMaze = blit(quickMazeText, (90, 800))
-    renderWeighted = blit(weightedText, (90, 845))
-        
-    # pathfinding options text
-    blit(choosePathfind, (85, 400))
-    pfPrim = fontSM.render('* PRIM\'S ALGORITHM', True, mazeColours[0])
-    renderPfPrim = blit(pfPrim, (630, 725))
+    renderQuickMaze = blit(quickMazeText, (700, 1000))
+    renderWeighted = blit(weightedText, (1020, 1000))
     
-    # maze generation text
-    blit(chooseMaze, (85,600))
-    mgAStar = fontSM.render('* A* ALGORITHM', True, colours[0])
-    renderMgPrim = blit(mgAStar, (630,390))
+    # package returned values
+    returned = [
+        # pathfind
+        renderPfA,
+        # maze gen
+        renderMgEller,
+        renderMgKruskal,
+        renderMgPrim,
+        renderMgBacktracking,
+        # options
+        renderQuickMaze,
+        renderWeighted
+    ]
     
-    return renderPfPrim, renderMgPrim
+    return returned
 
 def mainMenu():
     pathfindAlgs = ['a*']
-    mazeGenAlgs = ['recursive', 'kruskal', 'eller', 'prim']
+    mazeGenAlgs = ['eller', 'kruskal', 'prim', 'backtracking']
     hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted = None, None, None, None, None, False, False
     
     while True:
         # fill white background + generate menu text
         menu.fill(WHITE)
-        rects = genText(hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted)
+        rects = genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted)
         
         # event handling
         x, y = pygame.mouse.get_pos()
@@ -91,35 +118,35 @@ def mainMenu():
                     click = [rect.collidepoint((x, y)) for rect in rects]
                     if 1 in click:
                         chosen = click.index(1)
-                        if chosen <= len(pathfindAlg) - 1:
+                        if chosen < len(pathfindAlgs):
                             pathfind = chosen
                             ePathfind = None
-                        elif chosen < (len(pathfindAlg) + len(mazeGenAlgs)) - 2:
-                            maze = chosen-1
+                        elif chosen < (len(pathfindAlgs) + len(mazeGenAlgs)):
+                            maze = chosen - 1
                             eMaze = None
                             weighted = False
-                        elif chosen == (len(pathfindAlg) + len(mazeGenAlgs)) - 1:
+                        elif chosen == (len(pathfindAlgs) + len(mazeGenAlgs)):
                             if maze is not None:
                                 quickMaze = True
-                        elif chosen == len(pathfindAlg) + len(mazeGenAlgs):
+                        elif chosen == len(pathfindAlgs) + len(mazeGenAlgs) + 1:
                             if maze is None:
                                 weighted = True
                 elif event.button == 3:
                     click = [rect.collidepoint((x, y)) for rect in rects]
                     if 1 in click:
                         undone = click.index(1)
-                        if undone <= 2:
+                        if undone < len(pathfindAlgs):
                             ePathfind = undone
                             if pathfind == ePathfind:
                                 pathfind = None
-                        elif undone < 7:
-                            eMaze = undone-1
+                        elif undone < (len(pathfindAlgs) + len(mazeGenAlgs)):
+                            eMaze = undone - 1
                             if maze == eMaze:
                                 maze = None
                                 quickMaze = False
-                        elif undone == 7:
+                        elif undone == (len(pathfindAlgs) + len(mazeGenAlgs)):
                             quickMaze = False
-                        elif undone == 8:
+                        elif undone == (len(pathfindAlgs) + len(mazeGenAlgs) + 1):
                             weighted = False
         
         hover = [rect.collidepoint((x, y)) for rect in rects]
@@ -131,5 +158,3 @@ def mainMenu():
         # adapt menu to screen dimensions + update
         window.blit(pygame.transform.scale(menu, window.get_rect().size), (0, 0))
         pygame.display.update()
-            
-        
