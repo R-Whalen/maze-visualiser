@@ -1,6 +1,6 @@
 from algorithms.pathfinding import *
 from algorithms.generation import *
-from menu import mainMenu
+from mainMenu import mainMenu
 from display import *
 from node import *
 
