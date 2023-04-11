@@ -22,7 +22,7 @@ cellWidth, cellHeight = width / cells, height / cells
 ratio = (windowWidth / width + windowHeight / height) / 2
 fontNum = pygame.font.SysFont(fontType, int(15 / ratio))
 
-# basic function for rendering all node weights on the board
+# renders all node weights on the board
 def updateWeights(start, end, board):
     for row in board:
         for node in row:
@@ -30,7 +30,7 @@ def updateWeights(start, end, board):
                 number = fontNum.render(str(node.weight), True, BLACK)
                 window.blit(number, (node.x * cellWidth + cellWidth // 2.5, node.y * cellHeight + 2))
              
-# basic util function for getting mouse coords cast to integers   
+# util function for getting mouse coords cast to integers   
 def getMouseCoords():
         x, y = pygame.mouse.get_pos()
         x = int(x / cellWidth)
