@@ -14,14 +14,12 @@ fps = 0
 
 # pygame.surface is where everything is aligned properly, we use this to transform the current screen dimensions of the 
 # user without not entirely breaking the responsiveness of the pygame application 
-w = 1920
-h = 1080
-menu = pygame.Surface((1920, 1080))
+menu = pygame.Surface((windowWidth, windowHeight))
 window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 width, height = window.get_width(), window.get_height()
 cellWidth, cellHeight = width / cells, height / cells
 
-ratio = (w / width + h / height) / 2
+ratio = (windowWidth / width + windowHeight / height) / 2
 fontNum = pygame.font.SysFont(fontType, int(15 / ratio))
 
 # basic function for rendering all node weights on the board

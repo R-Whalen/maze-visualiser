@@ -6,7 +6,9 @@ import os.path
     the main application (originating from main.py) 
 """
 
-cells = 50 # changes visible cell count - higher number == increase the number of tiles on screen 
+cells = 50 # changes visible cell count - higher number == increase the number of tiles on screen
+windowWidth = 1920
+windowHeight = 1080
 
 # preset colours
 BLACK = (0, 0, 0)
