@@ -99,7 +99,7 @@ def mainMenu():
         rects = genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted)
         
         # event handling
-        x, y = pygame.mouse.get_pos()
+        x, y = getMouseCoords()
         x, y = x / (window.get_width() / menu.get_width()), y / (window.get_height() / menu.get_height())
         
         for event in pygame.event.get():
