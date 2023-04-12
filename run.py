@@ -4,6 +4,11 @@ from mainMenu import mainMenu
 from display import *
 from node import *
 
+"""
+    File that handles the execution of both types of algorithms. Also handles user input for 
+    everything after the main menu.
+"""
+
 def execute(alg, maze, quickMaze, weighted):
     def setup():
         # declare board
@@ -29,31 +34,32 @@ def execute(alg, maze, quickMaze, weighted):
 
     def generateMaze():
         if maze == 'eller':
-            
+            eller(start, end, board, quickMaze)
         elif maze == 'kruskal':
-
+            kruskal(start, end, board, quickMaze)
         elif maze == 'prim':
-
+            prim(start, end, board, quickMaze)
         elif maze == 'backtracking':
-            
+            recursiveBacktracking(start, end, board, quickMaze)
         # only possibility for no maze being selected is if we are using weights
         elif not weighted:
             raise Exception('Unsupported maze generation technique argument given.')
     
     def solveMaze():
         if alg == 'a*':
+            astar(start, end, maze, board, weighted)
         else: 
             raise Exception('Unsupported pathfinding algorithm argument given.')
         
     board = setup()
     
-    # default start and end nodes
+    # default start and end nodes - start top left, end bottom right
     start = board[0][0]
     end = board[cells - 1][cells - 1]
     
     # generate maze
     if maze is not None:
-        generateMaze(maze, board, quickMaze, start, end)
+        generateMaze()
         resetNodes(board)
     
     if weighted is True:
@@ -68,7 +74,7 @@ def execute(alg, maze, quickMaze, weighted):
         
         # execute solve
         if begin is True:
-            solveMaze(alg, board, quickMaze, start, end)
+            solveMaze()
             solved = True
             
         # handles all user altering maze prior to solving
@@ -136,7 +142,7 @@ def execute(alg, maze, quickMaze, weighted):
                         selectedCell.colour = None
                         addWeight = False
                 # basic user input
-                if event.key == pygame.pygame.K_RETURN:
+                if event.key == pygame.K_RETURN:
                     begin = True
                 # close application on 'q' or escaped
                 elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
