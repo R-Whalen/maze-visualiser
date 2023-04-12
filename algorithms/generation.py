@@ -26,6 +26,7 @@ def recursiveBacktracking(start, end, board, quickMaze):
             # backtrack
             current.colour = PATH_COLOUR # signify backtracking with PATH_COLOUR
             current = current.parent
+            deadend.append(current)
             if quickMaze is False: # only render if quickMaze is false - doesn't waste resources rendering
                 redrawWindow(start, end, board, False, True)
             continue # loop back around after rerender
@@ -50,7 +51,7 @@ def recursiveBacktracking(start, end, board, quickMaze):
         current = neighbour
         
         if quickMaze is False: # only render if quickMaze is false - doesn't waste resources rendering
-                redrawWindow(start, end, board, False, True)
+            redrawWindow(start, end, board, False, True)
             
             
 
@@ -58,7 +59,65 @@ def kruskal(start, end, board, quickMaze):
     return True
     
 def eller(start, end, board, quickMaze):
-    return True
+    current = [n for n in range(0, len(board))]
+    
+    # loop over each row
+    for row in board:
+        for i, node in enumerate(row[:-1]):
+            # if this is the last row or the adjacent cell doesn't belong to the same set, merge the 2 cells
+            if (random.randint(0, 1) or row == board[-1]) and current[i] != current[i + 1]:
+                if row != board[-1]:
+                    current[i + 1] = current[i]
+                # carve walls vertically
+                node.walls[2] = False
+                row[i + 1].walls[0] = False
+                
+                node.colour = VISITED_COLOUR
+                row[i + 1].colour = VISITED_COLOUR
+            
+            # rerender
+            if quickMaze is False:
+                redrawWindow(start, end, board, False, True)
+                
+        # make vertical connections if we are not on the last row
+        if row != board[-1]:
+            switch = [n for n in range((board.index(row)+1) * len(row), (board.index(row)+2) * len(row))]
+            moved = set()
+            
+            while set(current) != moved:
+                for i, node in enumerate(row):
+                    if random.randint(0, 1) and current[i] not in moved:
+                        moved.add(current[i])
+                        switch[i] = current[i]
+                        # carve walls horizontally
+                        node.walls[3] = False
+                        board[board.index(row) + 1][i].walls[1] = False
+                        
+                        node.colour = PATH_COLOUR
+                        board[board.index(row) + 1][i].colour = PATH_COLOUR
+                        # rerender
+                        if quickMaze is False: 
+                            redrawWindow(start, end, board, False, True)
+            
+            # create vertical lines on the penultimate row so our last row will have a set with more than 1 cell so 
+            # we can make a wall and not look empty
+            if row == board[-2]:
+                for i, node in enumerate(row):
+                    if random.randint(0, 1) and node.walls[3] is True:
+                        switch[i] = current[i]
+                        # carve horizontally
+                        node.walls[3] = False
+                        board[board.index(row) + 1][i].walls[1] = False
+                        
+                        node.colour = PATH_COLOUR
+                        board[board.index(row) + 1][i].colour = PATH_COLOUR
+                        
+                        if quickMaze is False:
+                            redrawWindow(start, end, board, False, True)
+            
+        current = switch
+            
+                
 
 def prim(start, end, board, quickMaze):
     visited = set()
