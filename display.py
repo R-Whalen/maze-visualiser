@@ -44,9 +44,9 @@ def getMouseCoords():
 # renders / fills in colour and walls for nodes
 def updateTiles(start, end, board):
     def drawLine(pos1, pos2):
-        pygame.draw.line(window, BLACK, (pos1, pos2))
+        pygame.draw.line(window, BLACK, pos1, pos2)
     
-    def fillBlock(block, colour):
+    def fillBlock(colour, block):
         pygame.draw.rect(window, colour, block)
         
     for row in board:
