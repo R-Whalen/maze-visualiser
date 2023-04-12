@@ -11,13 +11,6 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     blit(menuHeader, (170,50))
     blit(menuAuthor, (1000, 140))
     
-    # calc pathfinding + maze generation colour array lengths
-    pathfindAlgsLength, mazeGenAlgsLength = 0, 0
-    if (len(pathfindAlgs)):
-        pathfindAlgsLength = len(pathfindAlgs) - 1
-    if (len(mazeGenAlgs)):
-        mazeGenAlgsLength = len(mazeGenAlgs) - 1
-    
     pathfindingColours = [BLACK] * len(pathfindAlgs)
     mazeColours = [BLACK] * (len(mazeGenAlgs) + 2) # add 2 indices for quickMaze and weighting
     # set selected to black
@@ -46,6 +39,10 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     blit(choosePathfind, (85, 500)) # heading
     pfAStar = fontSM.render('* A* ALGORITHM', True, pathfindingColours[0])
     renderPfA = blit(pfAStar, (85, 575))
+    pfBfs = fontSM.render('* BREADTH FIRST SEARCH', True, pathfindingColours[1])
+    renderBfs = blit(pfBfs, (400, 575))
+    pfBdD = fontSM.render('* BIDIRECTIONAL DIJKSTRA', True, pathfindingColours[2])
+    renderBdD = blit(pfBdD, (85, 650))
     
     # maze generation options text
     blit(chooseMaze, (85, 750)) # heading
@@ -76,6 +73,8 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     returned = [
         # pathfind
         renderPfA,
+        renderBfs,
+        renderBdD,
         # maze gen
         renderMgEller,
         renderMgKruskal,
@@ -89,7 +88,7 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     return returned
 
 def mainMenu():
-    pathfindAlgs = ['a*']
+    pathfindAlgs = ['a*', 'bfs', 'bidirectional dijkstra']
     mazeGenAlgs = ['eller', 'kruskal', 'prim', 'backtracking']
     hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted = None, None, None, None, None, False, False
     
@@ -122,7 +121,7 @@ def mainMenu():
                             pathfind = chosen
                             ePathfind = None
                         elif chosen < (len(pathfindAlgs) + len(mazeGenAlgs)):
-                            maze = chosen - 1
+                            maze = chosen - len(pathfindAlgs)
                             eMaze = None
                             weighted = False
                         elif chosen == (len(pathfindAlgs) + len(mazeGenAlgs)):
