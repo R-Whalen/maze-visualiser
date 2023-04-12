@@ -56,7 +56,7 @@ def astar(start, end, maze, board, weighted):
 
     entry = 0
     queue = PriorityQueue()
-    queue.put((manhattan(start, end), entry, start))
+    queue.put((manhattan(start, end), entry, start)) # queue item structure - score, entry, node
     
     while True:
         current = queue.get()[2]
@@ -73,7 +73,7 @@ def astar(start, end, maze, board, weighted):
         
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
-            if maze is not None and canMove(current, neighbour) is False:
+            if canMove(current, neighbour) is False:
                 continue    
             
             temp = current.distanceFromStart + current.weight # weight initialised to 1
@@ -90,5 +90,26 @@ def astar(start, end, maze, board, weighted):
         
         # rerender at the end of each iteration
         redrawWindow(start, end, board, weighted)
-        
+
+def bfs(start, end, maze, board, weighted):
+    # setup
+    queue = []
+    visited = []
     
+    queue.append(start)
+    visited.append(start)
+
+    while len(queue):
+        current = queue.pop(0)
+        if current == end:
+            path = findPath(end)
+            buildPath(path, start, end, weighted, board)
+            break
+        
+        for neighbour in current.neighbours:
+            if neighbour not in visited and canMove(current, neighbour):
+                neighbour.colour = VISITED_COLOUR
+                neighbour.parent = current
+                visited.append(neighbour)
+                queue.append(neighbour)
+                redrawWindow(start, end, board, weighted)
