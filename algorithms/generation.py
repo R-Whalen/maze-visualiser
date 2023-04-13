@@ -56,7 +56,42 @@ def recursiveBacktracking(start, end, board, quickMaze):
             
 
 def kruskal(start, end, board, quickMaze):
-    return True
+    nodes = [node for row in board for node in row]
+    confirmed = {set: [node] for set, node in enumerate(nodes)}
+    
+    edges = []
+    for row in range(cells):
+        for col in range(cells):
+            edges.append((board[row][col], board[row + 1][col], 'R')) if row < cells - 1 else None
+            edges.append((board[row][col], board[row][col + 1], 'U')) if col < cells - 1 else None
+            
+    random.shuffle(edges)
+    
+    for (a, b, direction) in edges:
+        if len(confirmed) == 1:
+            break
+        confirmedA, confirmedB = None, None
+        for node in list(confirmed.keys()):
+            if a in confirmed[node]:
+                confirmedA = node
+            if b in confirmed[node]:
+                confirmedB = node
+            if None not in (confirmedA, confirmedB) and confirmedA != confirmedB:
+                confirmed[confirmedA].extend(confirmed[confirmedB])
+                del confirmed[confirmedB]
+                if direction == 'U':
+                    a.walls[2] = False
+                    b.walls[0] = False
+                elif direction == 'R':
+                    a.walls[3] == False
+                    b.walls[1] == False
+                    
+                a.colour = VISITED_COLOUR
+                b.colour = VISITED_COLOUR
+                
+                if quickMaze is False:
+                    redrawWindow(start, end, board, False, True)
+                break           
     
 def eller(start, end, board, quickMaze):
     current = [n for n in range(0, len(board))]
