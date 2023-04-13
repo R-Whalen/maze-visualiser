@@ -18,7 +18,7 @@ class Node:
         self.colour = None
         self.obstacle = None
         self.parent = None
-        self.visited = None
+        self.visited = False
         self.cameFrom = None # implemented for simplifying bidirectional dijkstra
         
     # node.reset allows up to quickly reset the board before undergoing another set of generation
