@@ -18,6 +18,8 @@ class Node:
         self.colour = None
         self.obstacle = None
         self.parent = None
+        self.visited = None
+        self.cameFrom = None # implemented for simplifying bidirectional dijkstra
         
     # node.reset allows up to quickly reset the board before undergoing another set of generation
     def reset(self):
@@ -26,6 +28,8 @@ class Node:
         self.colour = None
         self.parent = None
         self.obstacle = False
+        self.visited = False
+        self.cameFrom = None
         
     # helper function to locate random unvisited neighbour (will save a vast amount of time in the long run for maze generation algs)
     def getRandomNeighbour(self):
