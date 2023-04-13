@@ -89,7 +89,6 @@ def execute(alg, maze, quickMaze, weighted):
         
         # execute solve
         if begin is True:
-            print('triggered')
             solveMaze()
             solved = True
             draw, begin = False, False
@@ -138,10 +137,7 @@ def execute(alg, maze, quickMaze, weighted):
                         addWeight = False
                 # basic user input
                 if event.key == pygame.K_RETURN:
-                    print('bing bong bing bong')
-                    # print(begin)
                     begin = True
-                    # print(begin)
                 # close application on 'q' or escaped
                 elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
                     sys.exit()
