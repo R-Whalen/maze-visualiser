@@ -97,7 +97,7 @@ def aStar(start, end, board, weighted):
         
         # rerender at the end of each iteration
         redrawWindow(start, end, board, weighted)
-
+        
 def bfs(start, end, board, weighted):
     # setup
     queue = []
@@ -121,7 +121,10 @@ def bfs(start, end, board, weighted):
             
             if neighbour.visited is False:
                 neighbour.parent = current # link
-                queue.append(neighbour)
+                # without this we check every neighbour every time - isn't strictly true, 
+                # we haven't visited yet but we want to remove this node from the pool to add to the queue
+                neighbour.visited = True
+                queue.insert(0, neighbour) 
                 
         redrawWindow(start, end, board, weighted)
         
@@ -171,24 +174,33 @@ def bidirectionalDijkstra(start, end, board, weighted):
         redrawWindow(start, end, board, weighted)
         
 def dfs(start, end, board, weighted):
+    # setup
     queue = []
     
-    queue.put(start)
-    
+    queue.append(start)
+    start.visited = True
+
     while len(queue):
-        current = queue.pop(0)
-        
-        # completion 
+        current = queue.pop()
+        # visit
+        current.colour = VISITED_COLOUR
+        current.visited = True
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
             break
         
-        # if current:
-        #     visited.add(current)
+        for neighbour in current.neighbours:
+            if canMove(current, neighbour) is False:
+                continue
             
-        #     for neighbour in current.neighbours:
-        #         print('this')
+            if neighbour.visited is False:
+                neighbour.parent = current # link
+                # functionally incredibly similar to BFS logic, biggest different is 
+                # neighbours get brought to the end of the queue
+                queue.append(neighbour)
+                
+        redrawWindow(start, end, board, weighted)
                 
 def dijkstra(start, end, board, weighted):
     # manually assign distance from start to start
