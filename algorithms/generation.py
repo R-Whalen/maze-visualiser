@@ -16,7 +16,7 @@ def recursiveBacktracking(start, end, board, quickMaze):
         current.colour = VISITED_COLOUR
         
         # assemble full list of all touching neighbours of our current node
-        unvisited = [neighbour for neighbour in current.neights if neighbour.visited is False]
+        unvisited = [neighbour for neighbour in current.neighbours if neighbour.visited is False]
         
         # if our current has neighbours
         if len(unvisited):
