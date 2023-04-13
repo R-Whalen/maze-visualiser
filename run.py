@@ -41,23 +41,20 @@ def execute(alg, maze, quickMaze, weighted):
             prim(start, end, board, quickMaze)
         elif maze == 'backtracking':
             recursiveBacktracking(start, end, board, quickMaze)
-        # only possibility for no maze being selected is if we are using weights
-        # elif not weighted:
-        #     raise Exception('Unsupported maze generation technique argument given.')
     
     def solveMaze():
         if alg == 'a*':
-            aStar(start, end, maze, board, weighted)
+            aStar(start, end, board, weighted)
         elif alg == 'bfs':
-            bfs(start, end, maze, board, weighted)
+            bfs(start, end, board, weighted)
         elif alg == 'bidirectional dijkstra':
-            bidirectionalDijkstra(start, end, maze, board, weighted)
+            bidirectionalDijkstra(start, end, board, weighted)
         elif alg == 'dfs':
-            dfs(start, end, maze, board, weighted)
+            dfs(start, end, board, weighted)
         elif alg == 'dijkstra':
-            dijkstra(start, end, maze, board, weighted)
+            dijkstra(start, end, board, weighted)
         elif alg == 'random':
-            randomWalk(start, end, maze, board, weighted)
+            randomWalk(start, end, board, weighted)
         else: 
             raise Exception('Unsupported pathfinding algorithm argument given.')
         
@@ -70,7 +67,15 @@ def execute(alg, maze, quickMaze, weighted):
     # generate maze
     if maze is not None:
         generateMaze()
-        resetNodes(board)
+        resetNodes(board) # resets colours etc, reatains wall makeup
+    else:
+        # set the walls of all nodes to False
+        for row in board:
+            for node in row:
+                node.walls[0] = False
+                node.walls[1] = False
+                node.walls[2] = False
+                node.walls[3] = False
     
     if weighted is True:
         setRandomWeights(board)
@@ -80,14 +85,87 @@ def execute(alg, maze, quickMaze, weighted):
     
     # main loop
     while True:
-        redrawWindow(start, end, board, weighted = False, running = True)
+        redrawWindow(start, end, board, weighted, True)
         
         # execute solve
         if begin is True:
+            print('triggered')
             solveMaze()
             solved = True
             draw, begin = False, False
             
+        # user input - event handler
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+                
+            # set draw or erase to True or False if left or right click is being held 
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if selectCell is True:
+                        selectCell = True
+                    else:
+                        draw = True
+                elif event.button == 3:
+                    erase = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    if selectCell is True:
+                        selectCell = False
+                    draw = False
+                elif event.button == 3: 
+                    erase = False
+                     
+            elif event.type == pygame.KEYDOWN:
+                # user adding weights - only check if enabled
+                if addWeight is True:
+                    # selectedNumber map lets us narrow down user keyboard input later 
+                    selectedNumber = {
+                        pygame.K_1: 1,
+                        pygame.K_2: 2,
+                        pygame.K_3: 3,
+                        pygame.K_4: 4,
+                        pygame.K_5: 5,
+                        pygame.K_6: 6,
+                        pygame.K_7: 7,
+                        pygame.K_8: 8,
+                        pygame.K_9: 9
+                    }
+                    pressed = selectedNumber.get(event.key, None) # map event to number
+                    if pressed is not None:
+                        selectedCell.weight = pressed # assign weight to node
+                        selectedCell.colour = None
+                        addWeight = False
+                # basic user input
+                if event.key == pygame.K_RETURN:
+                    print('bing bong bing bong')
+                    # print(begin)
+                    begin = True
+                    # print(begin)
+                # close application on 'q' or escaped
+                elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
+                    sys.exit()
+                elif event.key == pygame.K_m:        
+                    mainMenu()
+                elif event.key == pygame.K_r:
+                    solved = False
+                    resetNodes(board)
+                elif event.key == pygame.K_w:
+                    selectCell = True 
+                elif event.key == pygame.K_s:
+                    pickStart = True
+                elif event.key == pygame.K_e:
+                    pickEnd = True
+            # disabling on key up
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_s:
+                    pickStart = False
+                elif event.key == pygame.K_e:
+                    pickEnd = False
+                elif event.key == pygame.K_w:
+                    selectCell = False
+                    addWeight = True
+                    
         # handles all user altering maze prior to solving
         if solved is False:
             # placing start
@@ -114,67 +192,3 @@ def execute(alg, maze, quickMaze, weighted):
                 if erase is True:
                     x, y = getMouseCoords()
                     board[x][y].obstacle = False
-
-        # user input - event handler
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-                
-            # set draw or erase to True or False if left or right click is being held 
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    selectCell = True
-                    draw = True
-            elif event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    selectCell = False
-                    draw = False
-                if event.button == 3: 
-                    erase = False
-                     
-            elif event.type == pygame.KEYDOWN:
-                # user adding weights - only check if enabled
-                if addWeight is True:
-                    # selectedNumber map lets us narrow down user keyboard input later 
-                    selectedNumber = {
-                        pygame.K_1: 1,
-                        pygame.K_2: 2,
-                        pygame.K_3: 3,
-                        pygame.K_4: 4,
-                        pygame.K_5: 5,
-                        pygame.K_6: 6,
-                        pygame.K_7: 7,
-                        pygame.K_8: 8,
-                        pygame.K_9: 9
-                    }
-                    pressed = selectedNumber.get(event.key, None) # map event to number
-                    if pressed is not None:
-                        selectedCell.weight = pressed # assign weight to node
-                        selectedCell.colour = None
-                        addWeight = False
-                # basic user input
-                if event.key == pygame.K_RETURN:
-                    begin = True
-                # close application on 'q' or escaped
-                elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
-                    sys.exit()
-                elif event.key == pygame.K_m:        
-                    mainMenu()
-                elif event.key == pygame.K_r:
-                    solved = False
-                    resetNodes(board)
-                elif event.key == pygame.K_w:
-                    selectCell = True 
-                elif event.key == pygame.K_s:
-                    pickStart = True
-                elif event.key == pygame.K_e:
-                    pickEnd = True
-            # disabling on key up
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_s:
-                    pickStart = False
-                elif event.key == pygame.K_e:
-                    pickEnd = False
-                elif event.key == pygame.K_w:
-                    selectCell = False
-                    addWeight = True
