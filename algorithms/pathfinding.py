@@ -44,7 +44,7 @@ def findPath(pos):
 
 def findBiPath(pos1, pos2):
     path = findPath(pos2)[::-1]
-    path.extend(findPath(pos1))
+    path.extend(findPath(pos1)) # connect both paths and return
     
     return path
 
@@ -55,10 +55,9 @@ def buildPath(path, start, end, weighted, board):
 
 # MAIN PATHFINDING FUNCTIONS
 
-def aStar(start, end, maze, board, weighted):
+def aStar(start, end, board, weighted):
     # manually assign distance from start to start
     start.distanceFromStart = 0
-    visited = set()
 
     entry = 0 # tracks entries in priority queue
     queue = PriorityQueue()
@@ -66,18 +65,18 @@ def aStar(start, end, maze, board, weighted):
      #maintains we will always begin at the start node
     queue.put((manhattan(start, end), entry, start)) # queue item structure - score, entry, node
     
-    while True:
+    while not queue.empty():
         current = queue.get()[2]
         
         # formally "visit" current
         current.colour = VISITED_COLOUR
-        visited.add(current)
+        current.visited = True
         
         # exit loop - final act to build the path
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
-            return
+            break
         
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
@@ -85,7 +84,7 @@ def aStar(start, end, maze, board, weighted):
                 continue    
             
             temp = current.distanceFromStart + current.weight # weight initialised to 1
-            if temp < neighbour.distanceFromStart and neighbour not in visited:
+            if temp < neighbour.distanceFromStart and neighbour.visited is False:
                 neighbour.parent = current # keep parent parity
                 neighbour.distanceFromStart = temp
                 
@@ -99,39 +98,38 @@ def aStar(start, end, maze, board, weighted):
         # rerender at the end of each iteration
         redrawWindow(start, end, board, weighted)
 
-def bfs(start, end, maze, board, weighted):
+def bfs(start, end, board, weighted):
     # setup
     queue = []
-    visited = []
     
     queue.append(start)
-    visited.append(start)
+    start.visited = True
 
     while len(queue):
         current = queue.pop()
+        # visit
         current.colour = VISITED_COLOUR
+        current.visited = True
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
-            return
+            break
         
         for neighbour in current.neighbours:
             if canMove(current, neighbour) is False:
                 continue
             
-            if neighbour not in visited:
-                neighbour.parent = current
-                visited.append(neighbour)
+            if neighbour.visited is False:
+                neighbour.parent = current # link
                 queue.append(neighbour)
                 
         redrawWindow(start, end, board, weighted)
         
-def bidirectionalDijkstra(start, end, maze, board, weighted):
+def bidirectionalDijkstra(start, end, board, weighted):
     # setup
     start.distanceFromStart = 0
     end.distanceFromStart = 0 # treat both as start nodes
     
-    visited = set()
     queue = PriorityQueue()
     entry = 0 # tracks entries in priority queue
     
@@ -143,8 +141,8 @@ def bidirectionalDijkstra(start, end, maze, board, weighted):
         # grab current node + if it came from start or end path
         *_, current, came = queue.get()
         # formally visit
-        visited.add(current)
         current.colour = VISITED_COLOUR
+        current.visited = True
         current.cameFrom = came
         
         for neighbour in current.neighbours:
@@ -160,7 +158,7 @@ def bidirectionalDijkstra(start, end, maze, board, weighted):
                 
                 path = findBiPath(a, b)
                 buildPath(path, start, end, weighted, board)
-                return
+                break
         
             # dijkstra assign values based on weight + distance from start        
             temp = current.distanceFromStart + current.weight
@@ -172,8 +170,7 @@ def bidirectionalDijkstra(start, end, maze, board, weighted):
                 
         redrawWindow(start, end, board, weighted)
         
-def dfs(start, end, maze, board, weighted):
-    visited = set()
+def dfs(start, end, board, weighted):
     queue = []
     
     queue.put(start)
@@ -185,18 +182,17 @@ def dfs(start, end, maze, board, weighted):
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
-            return
+            break
         
-        if current not in visited:
-            visited.add(current)
+        # if current:
+        #     visited.add(current)
             
-            for neighbour in current.neighbours:
-                print('this')
+        #     for neighbour in current.neighbours:
+        #         print('this')
                 
-def dijkstra(start, end, maze, board, weighted):
+def dijkstra(start, end, board, weighted):
     # manually assign distance from start to start
     start.distanceFromStart = 0
-    visited = set()
 
     entry = 0 # tracks entries in priority queue
     queue = PriorityQueue()
@@ -209,13 +205,13 @@ def dijkstra(start, end, maze, board, weighted):
         
         # formally "visit" current
         current.colour = VISITED_COLOUR
-        visited.add(current)
+        current.visited = True
         
         # exit loop - final act to build the path
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
-            return
+            break
         
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
@@ -223,7 +219,7 @@ def dijkstra(start, end, maze, board, weighted):
                 continue    
             
             temp = current.distanceFromStart + current.weight # weight initialised to 1
-            if temp < neighbour.distanceFromStart and neighbour not in visited:
+            if temp < neighbour.distanceFromStart and neighbour.visited is False:
                 neighbour.parent = current # keep parent parity
                 neighbour.distanceFromStart = temp
                 
@@ -235,7 +231,7 @@ def dijkstra(start, end, maze, board, weighted):
         # rerender at the end of each iteration
         redrawWindow(start, end, board, weighted)
         
-def randomWalk(start, end, maze, board, weighted):
+def randomWalk(start, end, board, weighted):
     # randomise which neighbour we go to
     
     queue = []
@@ -249,7 +245,7 @@ def randomWalk(start, end, maze, board, weighted):
         if current == end:
             path = findPath(end)
             buildPath(path, start, end, weighted, board)
-            return
+            break
         
         current.colour = VISITED_COLOUR
         
