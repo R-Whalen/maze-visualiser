@@ -4,20 +4,19 @@ import random
 
 def recursiveBacktracking(start, end, board, quickMaze):
     # setup
-    visited = set()
     deadend = []
     
     # start explicitly at our start node
     current = start
     
     while len(deadend) != (cells * cells):
-        visited.add(current)
+        current.visited = True
         
         # visit current
         current.colour = VISITED_COLOUR
         
         # assemble full list of all touching neighbours of our current node
-        unvisited = [neighbour for neighbour in current.neighbours if neighbour not in visited]
+        unvisited = [neighbour for neighbour in current.neights if neighbour.visited is False]
         
         # if our current has neighbours
         if len(unvisited):
@@ -155,7 +154,6 @@ def eller(start, end, board, quickMaze):
                 
 
 def prim(start, end, board, quickMaze):
-    visited = set()
     maxBoardIndex = len(board) - 1 # relies on x * x dimensions
     current = board[random.randint(0, maxBoardIndex)][random.randint(0, maxBoardIndex)] # select random point to begin
     
@@ -164,10 +162,10 @@ def prim(start, end, board, quickMaze):
     while d != {}:
         frontier, current = random.choice(list(d.items()))
         del d[frontier]
-        visited.add(frontier)
+        frontier.visited = True
         
         for neighbour in frontier.neighbours:
-            if neighbour not in visited:
+            if neighbour.visited is False:
                 d[neighbour] = frontier
                 
         # carve walls from our current to our neighbours that have not been visited
