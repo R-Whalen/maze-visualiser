@@ -42,12 +42,22 @@ def execute(alg, maze, quickMaze, weighted):
         elif maze == 'backtracking':
             recursiveBacktracking(start, end, board, quickMaze)
         # only possibility for no maze being selected is if we are using weights
-        elif not weighted:
-            raise Exception('Unsupported maze generation technique argument given.')
+        # elif not weighted:
+        #     raise Exception('Unsupported maze generation technique argument given.')
     
     def solveMaze():
         if alg == 'a*':
-            astar(start, end, maze, board, weighted)
+            aStar(start, end, maze, board, weighted)
+        elif alg == 'bfs':
+            bfs(start, end, maze, board, weighted)
+        elif alg == 'bidirectional dijkstra':
+            bidirectionalDijkstra(start, end, maze, board, weighted)
+        elif alg == 'dfs':
+            dfs(start, end, maze, board, weighted)
+        elif alg == 'dijkstra':
+            dijkstra(start, end, maze, board, weighted)
+        elif alg == 'random':
+            randomWalk(start, end, maze, board, weighted)
         else: 
             raise Exception('Unsupported pathfinding algorithm argument given.')
         
@@ -76,6 +86,7 @@ def execute(alg, maze, quickMaze, weighted):
         if begin is True:
             solveMaze()
             solved = True
+            draw, begin = False, False
             
         # handles all user altering maze prior to solving
         if solved is False:
