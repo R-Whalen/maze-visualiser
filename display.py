@@ -10,7 +10,7 @@ import sys
 # initialise our instance of pygame and define a set fps
 pygame.init()
 clock = pygame.time.Clock()
-fps = 0
+fps = 500
 
 # pygame.surface is where everything is aligned properly, we use this to transform the current screen dimensions of the 
 # user without not entirely breaking the responsiveness of the pygame application 
