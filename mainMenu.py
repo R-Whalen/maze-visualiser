@@ -40,20 +40,26 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     pfAStar = fontSM.render('* A* ALGORITHM', True, pathfindingColours[0])
     renderPfA = blit(pfAStar, (85, 575))
     pfBfs = fontSM.render('* BREADTH FIRST SEARCH', True, pathfindingColours[1])
-    renderBfs = blit(pfBfs, (400, 575))
+    renderBfs = blit(pfBfs, (425, 575))
     pfBdD = fontSM.render('* BIDIRECTIONAL DIJKSTRA', True, pathfindingColours[2])
     renderBdD = blit(pfBdD, (85, 650))
+    pfDfs = fontSM.render('* DEPTH FIRST SEARCH', True, pathfindingColours[3])
+    renderDfs = blit(pfDfs, (425, 650))
+    pfDijk = fontSM.render('* DIJKSTRA\'S ALGORITHM', True, pathfindingColours[4])
+    renderDijk = blit(pfDijk, (85, 725))
+    pfRW = fontSM.render('* RANDOM WALK', True, pathfindingColours[5])
+    renderRW = blit(pfRW, (425, 725))
     
     # maze generation options text
     blit(chooseMaze, (85, 750)) # heading
     mgEller = fontSM.render('* ELLER\'S ALGORITHM', True, mazeColours[0])
     renderMgEller = blit(mgEller, (85, 825))
     mgKruskal = fontSM.render('* KRUSKAL\'S ALGORITHM', True, mazeColours[1])
-    renderMgKruskal = blit(mgKruskal, (400, 825))
+    renderMgKruskal = blit(mgKruskal, (425, 825))
     mgPrim = fontSM.render('* PRIM\'S ALGORITHM', True, mazeColours[2])
     renderMgPrim = blit(mgPrim, (85, 875))
     mgBacktracking = fontSM.render('* RECURSIVE BACKTRACKING', True, mazeColours[3])
-    renderMgBacktracking = blit(mgBacktracking, (400, 875))
+    renderMgBacktracking = blit(mgBacktracking, (425, 875))
     
     # variable blitted text 
     if quickMaze is False:
@@ -75,6 +81,9 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
         renderPfA,
         renderBfs,
         renderBdD,
+        renderDfs,
+        renderDijk,
+        renderRW,
         # maze gen
         renderMgEller,
         renderMgKruskal,
@@ -88,7 +97,7 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     return returned
 
 def mainMenu():
-    pathfindAlgs = ['a*', 'bfs', 'bidirectional dijkstra']
+    pathfindAlgs = ['a*', 'bfs', 'bidirectional dijkstra', 'dfs', 'dijkstra', 'random']
     mazeGenAlgs = ['eller', 'kruskal', 'prim', 'backtracking']
     hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted = None, None, None, None, None, False, False
     
@@ -139,7 +148,7 @@ def mainMenu():
                             if pathfind == ePathfind:
                                 pathfind = None
                         elif undone < (len(pathfindAlgs) + len(mazeGenAlgs)):
-                            eMaze = undone - 1
+                            eMaze = undone - len(pathfindAlgs)
                             if maze == eMaze:
                                 maze = None
                                 quickMaze = False
