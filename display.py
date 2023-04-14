@@ -32,14 +32,14 @@ def updateWeights(start, end, board):
              
 # util function for getting mouse coords cast to integers   
 def getMouseCoords():
-        x, y = pygame.mouse.get_pos()
-        x = int(x / cellWidth)
-        y = int(y / cellHeight)
-        
-        if 0 <= x < cells and 0 <= y < cells: 
-            return x, y
-        
-        raise Exception('Selected coordinate is out of bounds.')
+    x, y = pygame.mouse.get_pos()
+    x = int(x / cellWidth)
+    y = int(y / cellHeight)
+    
+    if 0 <= x < cells and 0 <= y < cells: 
+        return x, y
+
+    return None, None # if out of bounds explicitly return something to indicate this 
 
 # renders / fills in colour and walls for nodes
 def updateTiles(start, end, board):
