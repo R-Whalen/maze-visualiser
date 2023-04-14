@@ -6,7 +6,7 @@ import os.path
     the main application (originating from main.py) 
 """
 
-cells = 50 # changes visible cell count - higher number == increase the number of tiles on screen
+cells = 100 # changes visible cell count - higher number == increase the number of tiles on screen
 windowWidth = 1920
 windowHeight = 1080
 
@@ -35,3 +35,6 @@ menuAuthor = fontSM.render('by Robert Whalen', True, BLACK)
 chooseMaze = fontMD.render('Maze generation algorithm(optional):', True, BLACK)
 # setup pathfinding algorithm option text
 choosePathfind = fontMD.render('Pathfinding algorithms:', True, BLACK)
+
+# test global filename
+testFileName = 'results.json'
