@@ -1,8 +1,10 @@
+import testHelper
 from algorithms.pathfinding import *
 from algorithms.generation import *
 from mainMenu import mainMenu
 from display import *
 from node import *
+import time
 
 """
     File that handles the execution of both types of algorithms. Also handles user input for 
@@ -33,6 +35,9 @@ def execute(alg, maze, quickMaze, weighted):
         return board
 
     def generateMaze():
+        # track timing of the generation
+        start = time.time()
+        
         if maze == 'eller':
             eller(start, end, board, quickMaze)
         elif maze == 'kruskal':
@@ -41,6 +46,19 @@ def execute(alg, maze, quickMaze, weighted):
             prim(start, end, board, quickMaze)
         elif maze == 'backtracking':
             recursiveBacktracking(start, end, board, quickMaze)
+            
+        finish = time.time()
+        
+        return {
+            'type': 'Maze Generation',
+            'algorithm': maze,
+            'size': str(cells) + ' x ' + str(cells),
+            'time' : (finish - start) * 1000, # recorded as ms
+            'arraySize': 'implement',
+            'pathWeight': None,
+            'quickMaze': True if quickMaze else False,
+            'quickPathfind': None
+        }
     
     def solveMaze():
         if alg == 'a*':
@@ -66,7 +84,8 @@ def execute(alg, maze, quickMaze, weighted):
     
     # generate maze
     if maze is not None:
-        generateMaze()
+        results = generateMaze()
+        testHelper.appendResult(results) #documenting the maze generation run
         resetNodes(board) # resets colours etc, reatains wall makeup
     else:
         # set the walls of all nodes to False
@@ -168,7 +187,7 @@ def execute(alg, maze, quickMaze, weighted):
             if pickStart is True or pickEnd is True:
                 #sanitising coords
                 x, y = getMouseCoords()
-                if pickStart and board[x][y] != end:
+                if x and y and pickStart and board[x][y] != end:
                     start = board[x][y]
                 if pickEnd and board[x][y] != start: 
                     end = board[x][y]
@@ -178,13 +197,16 @@ def execute(alg, maze, quickMaze, weighted):
                     x, y = getMouseCoords()
                     if selectedCell is not None:
                         selectedCell.colour = WHITE
-                    selectedCell = board[x][y]
-                    selectedCell.colour = VISITED_COLOUR
+                    if x and y:
+                        selectedCell = board[x][y]
+                        selectedCell.colour = VISITED_COLOUR
                 
                 # drawing logic
                 if draw is True:
                     x, y = getMouseCoords()
-                    board[x][y].obstacle = True
+                    if x and y:
+                        board[x][y].obstacle = True
                 if erase is True:
                     x, y = getMouseCoords()
-                    board[x][y].obstacle = False
+                    if x and y:
+                        board[x][y].obstacle = False
