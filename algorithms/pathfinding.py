@@ -62,10 +62,8 @@ def aStar(start, end, board, weighted):
     entry = 0 # tracks entries in priority queue
     queue = PriorityQueue()
     
-    ceiling = manhattan(start, end)
-    
      #maintains we will always begin at the start node
-    queue.put(ceiling, entry, start)) # queue item structure - score, entry, node
+    queue.put(manhattan(start, end), entry, start) # queue item structure - score, entry, node
     
     while not queue.empty():
         current = queue.get()[2]
@@ -85,21 +83,18 @@ def aStar(start, end, board, weighted):
             if canMove(current, neighbour) is False:
                 continue    
             
-            # temp = current.distanceFromStart + current.weight # weight initialised to 1
-            # if temp < neighbour.distanceFromStart and neighbour.visited is False:
-            #     neighbour.parent = current # keep parent parity
-            #     neighbour.distanceFromStart = temp
+            temp = current.distanceFromStart + current.weight # weight initialised to 1
+            if temp < neighbour.distanceFromStart and neighbour.visited is False:
+                neighbour.parent = current # keep parent parity
+                neighbour.distanceFromStart = temp
                 
-            #     # A* heuristic, utilises manhattan distance from position
-            #     neighbour.distanceToEnd = manhattan(neighbour, end)
-            #     # we wan to minimise our distance to the end and maximise our distance from the start
-            #     score = neighbour.distanceToEnd - neighbour.distanceFromStart 
+                # A* heuristic, utilises manhattan distance from position
+                neighbour.distanceToEnd = manhattan(neighbour, end)
+                # we wan to minimise our distance to the end and maximise our distance from the start
+                score = neighbour.distanceToEnd - neighbour.distanceFromStart 
                 
-            #     entry += 1
-            #     queue.put((score, entry, neighbour))
-                if neighbour.visited is False:
-                    entry += 1
-                    queue.put((manhattan(neighbour, end), entry, neighbour))
+                entry += 1
+                queue.put((score, entry, neighbour))
         
         # rerender at the end of each iteration
         redrawWindow(start, end, board, weighted)
