@@ -1,14 +1,11 @@
-import sys
-import pygame
+from algorithms.pathfinding import *
+from algorithms.generation import *
+from run import *
+from mainMenu import *
+from display import *
+from globals import *
+from node import *
 
-background_colour = (255,255,255)
-(width, height) = (300, 200)
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('First Demo')
-screen.fill(background_colour)
-pygame.display.flip()
-running = True
-while running:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      running = False
+if __name__ == "__main__":
+    if cells < 2: raise Exception('Dimensions selected not supported (minimum of 2 is accepted)')
+    pathfindAlg, mazeGenAlg, mazeGen, weight = mainMenu()
