@@ -59,8 +59,6 @@ def aStar(start, end, board, quickPathfind, weighted):
     start.distanceFromStart = 0
     queue = PriorityQueue()    
     
-    limit = cells * cells
-    
     entry = 0 # helps indexing our queue
     balloonSize = 0 # metric for testing
     
