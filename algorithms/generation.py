@@ -50,9 +50,7 @@ def recursiveBacktracking(start, end, board, quickMaze):
         current = neighbour
         
         if quickMaze is False: # only render if quickMaze is false - doesn't waste resources rendering
-            redrawWindow(start, end, board, False, True)
-            
-            
+            redrawWindow(start, end, board, False, True)            
 
 def kruskal(start, end, board, quickMaze):
     nodes = [node for row in board for node in row]
@@ -82,8 +80,8 @@ def kruskal(start, end, board, quickMaze):
                     a.walls[2] = False
                     b.walls[0] = False
                 elif direction == 'R':
-                    a.walls[3] == False
-                    b.walls[1] == False
+                    a.walls[3] = False
+                    b.walls[1] = False
                     
                 a.colour = VISITED_COLOUR
                 b.colour = VISITED_COLOUR
@@ -187,6 +185,3 @@ def prim(start, end, board, quickMaze):
         
         if quickMaze is False: 
             redrawWindow(start, end, board, False, True)
-            
-        current.colour = PATH_COLOUR
-        frontier.colour = PATH_COLOUR
