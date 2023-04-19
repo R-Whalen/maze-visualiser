@@ -12,7 +12,7 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     blit(menuAuthor, (1000, 140))
     
     pathfindingColours = [BLACK] * len(pathfindAlgs)
-    mazeColours = [BLACK] * (len(mazeGenAlgs) + 3) # add 3 indices for quickMaze and weighting
+    mazeColours = [BLACK] * (len(mazeGenAlgs) + 3) # add 3 indices for quickMaze, quickMaze and weighting
     # set selected to black
     if ePathfind is not None:
         pathfindingColours[ePathfind] = BLACK
