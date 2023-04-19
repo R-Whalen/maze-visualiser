@@ -64,7 +64,7 @@ def kruskal(start, end, board, quickMaze):
             edges.append((board[row][col], board[row + 1][col], 'R')) if row < cells - 1 else None
             edges.append((board[row][col], board[row][col + 1], 'U')) if col < cells - 1 else None
             
-    random.shuffle(edges)
+    random.shuffle(edges) # randomise
     
     for (a, b, direction) in edges:
         if len(confirmed) == 1:
