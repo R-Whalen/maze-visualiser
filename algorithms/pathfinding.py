@@ -56,48 +56,40 @@ def buildPath(path, start, end, weighted, board):
 # MAIN PATHFINDING FUNCTIONS
 
 def aStar(start, end, board, quickPathfind, weighted):
-    # manually assign distance from start to start
     start.distanceFromStart = 0
-
-    entry = 0 # tracks entries in priority queue
-    queue = PriorityQueue()
+    queue = PriorityQueue()    
     
-    balloonSize = 0 # begin tracking array size
+    limit = cells * cells
     
-     #maintains we will always begin at the start node
-    queue.put(manhattan(start, end), entry, start) # queue item structure - score, entry, node
+    entry = 0 # helps indexing our queue
+    balloonSize = 0 # metric for testing
     
-    while not queue.empty():
-        current = queue.get()[2]
-        
-        # formally "visit" current
-        current.colour = VISITED_COLOUR
+    # force start node to be our first node to "visit"
+    queue.put((manhattan(start, end), entry, start)) # structure - score, no, node referenced, suggested parent
+    
+    while not queue.empty(): # while there are nodes we can visit
+        current = queue.get()[2] # get from the top of the stack
         current.visited = True
+        current.colour = VISITED_COLOUR
         
-        # exit loop - final act to build the path
-        if current == end:
+        if current == end: # early exit, succeeds when current is our desired node
             path = findPath(end)
             return [path, balloonSize]
         
+        temp = current.distanceFromStart + current.weight
+        
         for neighbour in current.neighbours:
-            # exclude neighbours we cannot move to
             if canMove(current, neighbour) is False:
-                continue    
-            
-            temp = current.distanceFromStart + current.weight # weight initialised to 1
-            if temp < neighbour.distanceFromStart and neighbour.visited is False:
-                neighbour.parent = current # keep parent parity
+                continue # early traversal check
+            if neighbour.visited is False and temp < neighbour.distanceFromStart:
+                neighbour.parent = current
                 neighbour.distanceFromStart = temp
-                
-                # A* heuristic, utilises manhattan distance from position
-                neighbour.distanceToEnd = manhattan(neighbour, end)
-                # we wan to minimise our distance to the end and maximise our distance from the start
-                score = 100000 - neighbour.distanceFromStart 
-                
+                # minimise distance to end, maximise distance from start              
+                score = manhattan(neighbour, end) - neighbour.distanceFromStart                
                 entry += 1
                 queue.put((score, entry, neighbour))
-                if queue.qsize() > balloonSize: balloonSize = queue.qsize()
-        
+                if balloonSize < queue.qsize(): balloonSize = queue.qsize()                
+
         # rerender at the end of each iteration if rendering enabled
         if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
@@ -242,7 +234,7 @@ def dijkstra(start, end, board, quickPathfind, weighted):
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
             if canMove(current, neighbour) is False:
-                continue    
+                continue
             
             temp = current.distanceFromStart + current.weight # weight initialised to 1
             if temp < neighbour.distanceFromStart and neighbour.visited is False:
