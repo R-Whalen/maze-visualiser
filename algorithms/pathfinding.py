@@ -97,7 +97,7 @@ def aStar(start, end, board, quickPathfind, weighted):
                 queue.put((score, entry, neighbour))
         
         # rerender at the end of each iteration if rendering enabled
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
         
 def bfs(start, end, board, quickPathfind, weighted):
@@ -128,7 +128,7 @@ def bfs(start, end, board, quickPathfind, weighted):
                 neighbour.visited = True
                 queue.insert(0, neighbour) 
                 
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
         
 def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
@@ -174,7 +174,7 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
                 entry += 1
                 queue.put((temp, entry, neighbour, came))
                 
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
         
 def dfs(start, end, board, quickPathfind, weighted):
@@ -204,7 +204,7 @@ def dfs(start, end, board, quickPathfind, weighted):
                 # neighbours get brought to the end of the queue
                 queue.append(neighbour)
                 
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
                 
 def dijkstra(start, end, board, quickPathfind, weighted):
@@ -246,7 +246,7 @@ def dijkstra(start, end, board, quickPathfind, weighted):
                 queue.put((score, entry, neighbour))
         
         # rerender at the end of each iteration
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
         
 def randomWalk(start, end, board, quickPathfind, weighted):
@@ -289,5 +289,5 @@ def randomWalk(start, end, board, quickPathfind, weighted):
             queue.append(current.parent)
             
         # rerender at the end of every loop
-        if quickPathfind:
+        if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
