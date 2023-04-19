@@ -5,6 +5,7 @@ from mainMenu import mainMenu
 from display import *
 from node import *
 import time
+import json
 
 """
     File that handles the execution of both types of algorithms. Also handles user input for 
@@ -31,7 +32,7 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
                 # checks left
                 if node.x - 1 >= 0:
                     node.neighbours.append(board[node.x - 1][node.y])
-        
+      
         return board
 
     def generateMaze():
@@ -50,6 +51,17 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
         finishTime = time.time()
         
         if not alg: return # early exit to avoid reporting if an algorithm isnt chosen, maze generation exclusive
+        
+        # export = []
+        
+        # for row in board:
+        #     exportRow = []
+        #     for node in row:
+        #         exportRow.append(node.walls)
+        #     export.append(exportRow)
+        #     with open('./export-maze.json', "w") as f:
+        #         json.dump(export, f, indent=4, sort_keys=True)  
+                
                 
         return {
             'type': 'Maze Generation',
@@ -91,8 +103,8 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
             totalWeight += x.weight 
         
         return {
-            'type': 'Maze Generation',
-            'algorithm': maze,
+            'type': 'Pathfinding',
+            'algorithm': alg,
             'size': str(cells) + ' x ' + str(cells),
             'time' : (finishTime - startTime) * 1000, # recorded as ms
             'arraySize': balloonSize,
@@ -120,6 +132,14 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
                 node.walls[1] = False
                 node.walls[2] = False
                 node.walls[3] = False
+                
+        # f = open('./export-maze.json')
+        # data = json.load(f)
+        # f.close()
+        
+        # for i in range(len(board)):
+        #     for j in range(len(board)):
+        #         board[i][j].walls = data[i][j]
     
     if weighted is True:
         setRandomWeights(board)
