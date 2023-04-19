@@ -56,40 +56,48 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
             'algorithm': maze,
             'size': str(cells) + ' x ' + str(cells),
             'time' : (finishTime - startTime) * 1000, # recorded as ms
-            'arraySize': 'implement',
-            'pathWeight': None,
+            'arraySize': None, # none as maze generation entry
+            'pathWeight': None, # none as maze generation entry
             'quickMaze': quickMaze,
-            'quickPathfind': None
+            'quickPathfind': None # none as maze generation entry
         }
     
     def solveMaze():
         startTime = time.time()
         
         if alg == 'a*':
-            aStar(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = aStar(start, end, board, quickPathfind, weighted)
         elif alg == 'bfs':
-            bfs(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = bfs(start, end, board, quickPathfind, weighted)
         elif alg == 'bidirectional dijkstra':
-            bidirectionalDijkstra(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = bidirectionalDijkstra(start, end, board, quickPathfind, weighted)
         elif alg == 'dfs':
-            dfs(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = dfs(start, end, board, quickPathfind, weighted)
         elif alg == 'dijkstra':
-            dijkstra(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = dijkstra(start, end, board, quickPathfind, weighted)
         elif alg == 'random':
-            randomWalk(start, end, board, quickPathfind, weighted)
+            [path, balloonSize] = randomWalk(start, end, board, quickPathfind, weighted)
         else: 
             raise Exception('Unsupported pathfinding algorithm argument given.')
         
         finishTime = time.time()
+        
+        # build once a path has been found - render outside of timed function
+        buildPath(path, start, end, weighted, board)
+        
+        # assemble total weight
+        totalWeight = 0
+        for x in path:
+            totalWeight += x.weight 
         
         return {
             'type': 'Maze Generation',
             'algorithm': maze,
             'size': str(cells) + ' x ' + str(cells),
             'time' : (finishTime - startTime) * 1000, # recorded as ms
-            'arraySize': 'implement',
-            'pathWeight': None,
-            'quickMaze': None,
+            'arraySize': balloonSize,
+            'pathWeight': totalWeight,
+            'quickMaze': None, # none as pathfinding entry
             'quickPathfind': quickPathfind
         }
         

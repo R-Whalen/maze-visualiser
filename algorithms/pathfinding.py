@@ -62,6 +62,8 @@ def aStar(start, end, board, quickPathfind, weighted):
     entry = 0 # tracks entries in priority queue
     queue = PriorityQueue()
     
+    balloonSize = 0 # begin tracking array size
+    
      #maintains we will always begin at the start node
     queue.put(manhattan(start, end), entry, start) # queue item structure - score, entry, node
     
@@ -75,8 +77,7 @@ def aStar(start, end, board, quickPathfind, weighted):
         # exit loop - final act to build the path
         if current == end:
             path = findPath(end)
-            buildPath(path, start, end, weighted, board)
-            break
+            return [path, balloonSize]
         
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
@@ -95,6 +96,7 @@ def aStar(start, end, board, quickPathfind, weighted):
                 
                 entry += 1
                 queue.put((score, entry, neighbour))
+                if queue.qsize() > balloonSize: balloonSize = queue.qsize()
         
         # rerender at the end of each iteration if rendering enabled
         if quickPathfind is False:
@@ -106,6 +108,8 @@ def bfs(start, end, board, quickPathfind, weighted):
     
     queue.append(start)
     start.visited = True
+    
+    balloonSize = 0 # begin tracking array size
 
     while len(queue):
         current = queue.pop()
@@ -114,8 +118,7 @@ def bfs(start, end, board, quickPathfind, weighted):
         current.visited = True
         if current == end:
             path = findPath(end)
-            buildPath(path, start, end, weighted, board)
-            break
+            return [path, balloonSize]
         
         for neighbour in current.neighbours:
             if canMove(current, neighbour) is False:
@@ -126,7 +129,8 @@ def bfs(start, end, board, quickPathfind, weighted):
                 # without this we check every neighbour every time - isn't strictly true, 
                 # we haven't visited yet but we want to remove this node from the pool to add to the queue
                 neighbour.visited = True
-                queue.insert(0, neighbour) 
+                queue.insert(0, neighbour)
+                if len(queue) > balloonSize: balloonSize = len(queue)
                 
         if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
@@ -143,6 +147,8 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
     entry += 1
     queue.put((0, entry, end, 'b'))
     
+    balloonSize = 0 # begin tracking array size
+    
     while not queue.empty():
         # grab current node + if it came from start or end path
         *_, current, came = queue.get()
@@ -155,7 +161,7 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
             if canMove(current, neighbour) is False:
                 continue
             
-            # if we connect, intersection is found - complete path
+            # if we connect, intersection is found - complete and stich together path
             if current.cameFrom != neighbour.cameFrom and None not in (current.cameFrom, neighbour.cameFrom):
                 if current.cameFrom == 'a':
                     a, b = current, neighbour
@@ -163,8 +169,7 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
                     a, b = neighbour, current
                 
                 path = findBiPath(a, b)
-                buildPath(path, start, end, weighted, board)
-                return # have to return to break the outer while loop
+                return [path, balloonSize]
         
             # dijkstra assign values based on weight + distance from start        
             temp = current.distanceFromStart + current.weight
@@ -173,6 +178,7 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
                 neighbour.distanceFromStart = temp
                 entry += 1
                 queue.put((temp, entry, neighbour, came))
+                if queue.qsize() > balloonSize: balloonSize = queue.qsize()
                 
         if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
@@ -183,6 +189,8 @@ def dfs(start, end, board, quickPathfind, weighted):
     
     queue.append(start)
     start.visited = True
+    
+    balloonSize = 0 # begin tracking array size
 
     while len(queue):
         current = queue.pop()
@@ -191,8 +199,7 @@ def dfs(start, end, board, quickPathfind, weighted):
         current.visited = True
         if current == end:
             path = findPath(end)
-            buildPath(path, start, end, weighted, board)
-            break
+            return [path, balloonSize]
         
         for neighbour in current.neighbours:
             if canMove(current, neighbour) is False:
@@ -203,6 +210,7 @@ def dfs(start, end, board, quickPathfind, weighted):
                 # functionally incredibly similar to BFS logic, biggest different is 
                 # neighbours get brought to the end of the queue
                 queue.append(neighbour)
+                if len(queue) > balloonSize: balloonSize = len(queue)
                 
         if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
@@ -217,6 +225,8 @@ def dijkstra(start, end, board, quickPathfind, weighted):
      #maintains we will always begin at the start node
     queue.put((manhattan(start, end), entry, start)) # queue item structure - score, entry, node
     
+    balloonSize = 0 # begin tracking array size
+    
     while True:
         current = queue.get()[2]
         
@@ -227,8 +237,7 @@ def dijkstra(start, end, board, quickPathfind, weighted):
         # exit loop - final act to build the path
         if current == end:
             path = findPath(end)
-            buildPath(path, start, end, weighted, board)
-            break
+            return [path, balloonSize]
         
         for neighbour in current.neighbours:
             # exclude neighbours we cannot move to
@@ -244,6 +253,7 @@ def dijkstra(start, end, board, quickPathfind, weighted):
                 
                 entry += 1
                 queue.put((score, entry, neighbour))
+                if (queue.qsize() > balloonSize): balloonSize = queue.qsize()
         
         # rerender at the end of each iteration
         if quickPathfind is False:
@@ -255,6 +265,8 @@ def randomWalk(start, end, board, quickPathfind, weighted):
     queue = []
     queue.append(start) #start at our beginning node
     
+    balloonSize = 0 # begin tracking array size
+    
     # if there are no neighbours we haven't visited
     while len(queue):
         current = queue.pop(0)
@@ -262,8 +274,7 @@ def randomWalk(start, end, board, quickPathfind, weighted):
         
         if current == end:
             path = findPath(end)
-            buildPath(path, start, end, weighted, board)
-            break
+            return [path, balloonSize]
         
         current.colour = VISITED_COLOUR
         
@@ -283,10 +294,12 @@ def randomWalk(start, end, board, quickPathfind, weighted):
             i = random.randint(0, len(potential) - 1) # randomly generate index
             selected = current.neighbours[current.neighbours.index(potential[i])]
             selected.parent = current # join 
-            queue.append(selected) # add 
+            queue.append(selected) # add
         # else backstep to the parent of the node and loop around again - backtracking is a small improvement on random walk 
         else:
             queue.append(current.parent)
+        
+        if len(queue) > balloonSize: balloonSize = len(queue)
             
         # rerender at the end of every loop
         if quickPathfind is False:
