@@ -110,7 +110,7 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
     # generate maze
     if maze is not None:
         results = generateMaze()
-        testHelper.appendResult(results) #documenting the maze generation run
+        testHelper.appendResult(results) # documenting the maze generation run
         resetNodes(board) # resets colours etc, reatains wall makeup
     else:
         # set the walls of all nodes to False
@@ -133,7 +133,8 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
         
         # execute solve
         if begin is True:
-            solveMaze()
+            results = solveMaze()
+            testHelper.appendResult(results) # documenting the pathfinding run 
             solved = True
             draw, begin = False, False
             
