@@ -6,13 +6,13 @@ from globals import *
 def blit(vis, pos):
     return menu.blit(vis, pos)
 
-def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze = False, weighted = False):
+def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze = False, quickPathfind = False, weighted = False):
     # menu header + author
     blit(menuHeader, (170,50))
     blit(menuAuthor, (1000, 140))
     
     pathfindingColours = [BLACK] * len(pathfindAlgs)
-    mazeColours = [BLACK] * (len(mazeGenAlgs) + 2) # add 2 indices for quickMaze and weighting
+    mazeColours = [BLACK] * (len(mazeGenAlgs) + 3) # add 3 indices for quickMaze, quickMaze and weighting
     # set selected to black
     if ePathfind is not None:
         pathfindingColours[ePathfind] = BLACK
@@ -32,8 +32,10 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
         mazeColours[maze] = END_COLOUR
     if quickMaze is not False:
         mazeColours[len(mazeGenAlgs)] = END_COLOUR
-    if weighted is not False:
+    if quickPathfind is True:
         mazeColours[len(mazeGenAlgs) + 1] = END_COLOUR
+    if weighted is not False:
+        mazeColours[len(mazeGenAlgs) + 2] = END_COLOUR
     
     # pathfinding text
     blit(choosePathfind, (85, 500)) # heading
@@ -63,17 +65,25 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
     
     # variable blitted text 
     if quickMaze is False:
-        quickMazeText = fontSM.render('Instant Maze Generation?', True, mazeColours[len(mazeGenAlgs)])
+        quickMazeText = fontSM.render('Disable maze generation rendering?', True, mazeColours[len(mazeGenAlgs)])
     else:
-        quickMazeText = fontSM.render('Instant Maze Generation!', True, mazeColours[len(mazeGenAlgs)])
+        quickMazeText = fontSM.render('Disabled maze generation rendering!', True, mazeColours[len(mazeGenAlgs)])
         
+    if quickPathfind is False:
+        quickPathfindText = fontSM.render('Disable pathfinding rendering?', True, mazeColours[len(mazeGenAlgs) + 1])
+    else:
+        quickPathfindText = fontSM.render('Disabled pathfinding rendering!', True, mazeColours[len(mazeGenAlgs) + 1])
+        
+    
     if weighted is False:
-        weightedText = fontSM.render('Randomise cell weights?', True, mazeColours[len(mazeGenAlgs) + 1])
+        weightedText = fontSM.render('Randomise cell weights?', True, mazeColours[len(mazeGenAlgs) + 2])
     else:
-        weightedText = fontSM.render('Randomise cell weights!', True, mazeColours[len(mazeGenAlgs) + 1])
+        weightedText = fontSM.render('Randomise cell weights!', True, mazeColours[len(mazeGenAlgs) + 2])
         
-    renderQuickMaze = blit(quickMazeText, (700, 1000))
-    renderWeighted = blit(weightedText, (1020, 1000))
+        
+    renderQuickMaze = blit(quickMazeText, (400, 1000))
+    renderQuickPathfind = blit(quickPathfindText, (800, 1000))
+    renderWeighted = blit(weightedText, (1200, 1000))
     
     # package returned values
     returned = [
@@ -91,6 +101,7 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
         renderMgBacktracking,
         # options
         renderQuickMaze,
+        renderQuickPathfind,
         renderWeighted
     ]
     
@@ -99,12 +110,12 @@ def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, 
 def mainMenu():
     pathfindAlgs = ['a*', 'bfs', 'bidirectional dijkstra', 'dfs', 'dijkstra', 'random']
     mazeGenAlgs = ['eller', 'kruskal', 'prim', 'backtracking']
-    hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted = None, None, None, None, None, False, False
+    hover, maze, pathfind, eMaze, ePathfind, quickMaze, quickPathfind, weighted = None, None, None, None, None, False, False, False
     
     while True:
         # fill white background + generate menu text
         menu.fill(WHITE)
-        rects = genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze, weighted)
+        rects = genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze, quickPathfind, weighted)
         
         # event handling
         x, y = pygame.mouse.get_pos()
@@ -119,7 +130,7 @@ def mainMenu():
                     pathfindAlg = pathfindAlgs[pathfind] if pathfind is not None else None
                     mazeGenAlg = mazeGenAlgs[maze] if maze is not None else None
                     if pathfindAlg is not None:
-                        run.execute(pathfindAlg, mazeGenAlg, quickMaze, weighted)
+                        run.execute(pathfindAlg, mazeGenAlg, quickMaze, quickPathfind, weighted)
             # rect selection - manual wiring
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
@@ -137,6 +148,9 @@ def mainMenu():
                             if maze is not None:
                                 quickMaze = True
                         elif chosen == len(pathfindAlgs) + len(mazeGenAlgs) + 1:
+                            if pathfind is not None:
+                                quickPathfind = True
+                        elif chosen == len(pathfindAlgs) + len(mazeGenAlgs) + 2:
                             if maze is None:
                                 weighted = True
                 elif event.button == 3:
@@ -155,6 +169,8 @@ def mainMenu():
                         elif undone == (len(pathfindAlgs) + len(mazeGenAlgs)):
                             quickMaze = False
                         elif undone == (len(pathfindAlgs) + len(mazeGenAlgs) + 1):
+                            quickPathfind = False
+                        elif undone == (len(pathfindAlgs) + len(mazeGenAlgs) + 2):
                             weighted = False
         
         hover = [rect.collidepoint((x, y)) for rect in rects]
