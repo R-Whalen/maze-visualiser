@@ -11,7 +11,7 @@ import time
     everything after the main menu.
 """
 
-def execute(alg, maze, quickMaze, weighted):
+def execute(alg, maze, quickMaze, quickPathfind, weighted):
     def setup():
         # declare board
         board = [[Node(x, y) for y in range(cells)] for x in range(cells)]
@@ -36,7 +36,7 @@ def execute(alg, maze, quickMaze, weighted):
 
     def generateMaze():
         # track timing of the generation
-        start = time.time()
+        startTime = time.time()
         
         if maze == 'eller':
             eller(start, end, board, quickMaze)
@@ -47,34 +47,51 @@ def execute(alg, maze, quickMaze, weighted):
         elif maze == 'backtracking':
             recursiveBacktracking(start, end, board, quickMaze)
             
-        finish = time.time()
+        finishTime = time.time()
+        
+        if not alg: return # early exit to avoid reporting if an algorithm isnt chosen, maze generation exclusive
+                
+        return {
+            'type': 'Maze Generation',
+            'algorithm': maze,
+            'size': str(cells) + ' x ' + str(cells),
+            'time' : (finishTime - startTime) * 1000, # recorded as ms
+            'arraySize': 'implement',
+            'pathWeight': None,
+            'quickMaze': quickMaze,
+            'quickPathfind': None
+        }
+    
+    def solveMaze():
+        startTime = time.time()
+        
+        if alg == 'a*':
+            aStar(start, end, board, quickPathfind, weighted)
+        elif alg == 'bfs':
+            bfs(start, end, board, quickPathfind, weighted)
+        elif alg == 'bidirectional dijkstra':
+            bidirectionalDijkstra(start, end, board, quickPathfind, weighted)
+        elif alg == 'dfs':
+            dfs(start, end, board, quickPathfind, weighted)
+        elif alg == 'dijkstra':
+            dijkstra(start, end, board, quickPathfind, weighted)
+        elif alg == 'random':
+            randomWalk(start, end, board, quickPathfind, weighted)
+        else: 
+            raise Exception('Unsupported pathfinding algorithm argument given.')
+        
+        finishTime = time.time()
         
         return {
             'type': 'Maze Generation',
             'algorithm': maze,
             'size': str(cells) + ' x ' + str(cells),
-            'time' : (finish - start) * 1000, # recorded as ms
+            'time' : (finishTime - startTime) * 1000, # recorded as ms
             'arraySize': 'implement',
             'pathWeight': None,
-            'quickMaze': True if quickMaze else False,
-            'quickPathfind': None
+            'quickMaze': None,
+            'quickPathfind': quickPathfind
         }
-    
-    def solveMaze():
-        if alg == 'a*':
-            aStar(start, end, board, weighted)
-        elif alg == 'bfs':
-            bfs(start, end, board, weighted)
-        elif alg == 'bidirectional dijkstra':
-            bidirectionalDijkstra(start, end, board, weighted)
-        elif alg == 'dfs':
-            dfs(start, end, board, weighted)
-        elif alg == 'dijkstra':
-            dijkstra(start, end, board, weighted)
-        elif alg == 'random':
-            randomWalk(start, end, board, weighted)
-        else: 
-            raise Exception('Unsupported pathfinding algorithm argument given.')
         
     board = setup()
     

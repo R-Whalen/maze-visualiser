@@ -51,11 +51,11 @@ def findBiPath(pos1, pos2):
 def buildPath(path, start, end, weighted, board):
     for node in path[::-1]:
         node.colour = PATH_COLOUR
-        redrawWindow(start, end, board, weighted)
+        redrawWindow(start, end, board, weighted) # this drawing is forced despite quickPathfind
 
 # MAIN PATHFINDING FUNCTIONS
 
-def aStar(start, end, board, weighted):
+def aStar(start, end, board, quickPathfind, weighted):
     # manually assign distance from start to start
     start.distanceFromStart = 0
 
@@ -91,15 +91,16 @@ def aStar(start, end, board, weighted):
                 # A* heuristic, utilises manhattan distance from position
                 neighbour.distanceToEnd = manhattan(neighbour, end)
                 # we wan to minimise our distance to the end and maximise our distance from the start
-                score = neighbour.distanceToEnd - neighbour.distanceFromStart 
+                score = 100000 - neighbour.distanceFromStart 
                 
                 entry += 1
                 queue.put((score, entry, neighbour))
         
-        # rerender at the end of each iteration
-        redrawWindow(start, end, board, weighted)
+        # rerender at the end of each iteration if rendering enabled
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
         
-def bfs(start, end, board, weighted):
+def bfs(start, end, board, quickPathfind, weighted):
     # setup
     queue = []
     
@@ -127,9 +128,10 @@ def bfs(start, end, board, weighted):
                 neighbour.visited = True
                 queue.insert(0, neighbour) 
                 
-        redrawWindow(start, end, board, weighted)
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
         
-def bidirectionalDijkstra(start, end, board, weighted):
+def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
     # setup
     start.distanceFromStart = 0
     end.distanceFromStart = 0 # treat both as start nodes
@@ -172,9 +174,10 @@ def bidirectionalDijkstra(start, end, board, weighted):
                 entry += 1
                 queue.put((temp, entry, neighbour, came))
                 
-        redrawWindow(start, end, board, weighted)
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
         
-def dfs(start, end, board, weighted):
+def dfs(start, end, board, quickPathfind, weighted):
     # setup
     queue = []
     
@@ -201,9 +204,10 @@ def dfs(start, end, board, weighted):
                 # neighbours get brought to the end of the queue
                 queue.append(neighbour)
                 
-        redrawWindow(start, end, board, weighted)
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
                 
-def dijkstra(start, end, board, weighted):
+def dijkstra(start, end, board, quickPathfind, weighted):
     # manually assign distance from start to start
     start.distanceFromStart = 0
 
@@ -242,9 +246,10 @@ def dijkstra(start, end, board, weighted):
                 queue.put((score, entry, neighbour))
         
         # rerender at the end of each iteration
-        redrawWindow(start, end, board, weighted)
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
         
-def randomWalk(start, end, board, weighted):
+def randomWalk(start, end, board, quickPathfind, weighted):
     # randomise which neighbour we go to
     
     queue = []
@@ -284,4 +289,5 @@ def randomWalk(start, end, board, weighted):
             queue.append(current.parent)
             
         # rerender at the end of every loop
-        redrawWindow(start, end, board, weighted)
+        if quickPathfind:
+            redrawWindow(start, end, board, weighted)
