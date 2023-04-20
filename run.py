@@ -54,7 +54,7 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
         
         # export = []
         
-        # Code for exporting walls when no maze gen is selected
+        # Code for importing walls when no maze gen is selected
         # for row in board:
         #     exportRow = []
         #     for node in row:
@@ -135,13 +135,13 @@ def execute(alg, maze, quickMaze, quickPathfind, weighted):
                 node.walls[3] = False
                 
         # Code for importing walls when no maze gen is selected - cells must be the same as when generated
-        # f = open('./export-maze.json')
-        # data = json.load(f)
-        # f.close()
+        f = open('./export-maze.json')
+        data = json.load(f)
+        f.close()
         
-        # for i in range(len(board)):
-        #     for j in range(len(board)):
-        #         board[i][j].walls = data[i][j]
+        for i in range(len(board)):
+            for j in range(len(board)):
+                board[i][j].walls = data[i][j]
     
     if weighted is True:
         setRandomWeights(board)
