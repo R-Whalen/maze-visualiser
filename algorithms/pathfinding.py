@@ -1,8 +1,8 @@
 from queue import PriorityQueue
 from globals import *
 from display import *
-import time
 import random
+import math
 
 # UTILITY FUNCTIONS
 
@@ -63,7 +63,7 @@ def aStar(start, end, board, quickPathfind, weighted):
     balloonSize = 0 # metric for testing
     
     # force start node to be our first node to "visit"
-    queue.put((manhattan(start, end), entry, start)) # structure - score, no, node referenced, suggested parent
+    queue.put((cells * cells, entry, start)) # structure - score, no, node referenced, suggested parent
     
     while not queue.empty(): # while there are nodes we can visit
         current = queue.get()[2] # get from the top of the stack
@@ -74,7 +74,7 @@ def aStar(start, end, board, quickPathfind, weighted):
             path = findPath(end)
             return [path, balloonSize]
         
-        temp = current.distanceFromStart + current.weight
+        temp = manhattan(current, start) + current.weight
         
         for neighbour in current.neighbours:
             if canMove(current, neighbour) is False:
@@ -83,7 +83,7 @@ def aStar(start, end, board, quickPathfind, weighted):
                 neighbour.parent = current
                 neighbour.distanceFromStart = temp
                 # minimise distance to end, maximise distance from start              
-                score = manhattan(neighbour, end) - neighbour.distanceFromStart                
+                score = math.sqrt(manhattan(neighbour, end)) - math.sqrt(neighbour.distanceFromStart)    
                 entry += 1
                 queue.put((score, entry, neighbour))
                 if balloonSize < queue.qsize(): balloonSize = queue.qsize()                
