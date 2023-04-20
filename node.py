@@ -31,14 +31,6 @@ class Node:
         self.visited = False
         self.cameFrom = None
         
-    # helper function to locate random unvisited neighbour (will save a vast amount of time in the long run for maze generation algs)
-    def getRandomNeighbour(self):
-        pot = [neighbour for neighbour in self.neighbours if neighbour.visited is False]
-        if not pot:
-            return None
-        else:
-            return random.choice(pot)
-        
 # basic helper function for nodes
 def resetNodes(board):
     for row in board:

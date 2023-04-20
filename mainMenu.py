@@ -2,14 +2,42 @@ import run
 from display import *
 from globals import *
 
-#util function for blitting
+# util function for blitting
 def blit(vis, pos):
     return menu.blit(vis, pos)
+
+# util function for drawing rectangles
+def rect(colour, options):
+    return pygame.draw.rect(menu, colour, options, 4)
+
+def fill(colour, rect):
+    return menu.fill(colour, rect)
 
 def genText(pathfindAlgs, mazeGenAlgs, hover, maze, pathfind, eMaze, ePathfind, quickMaze = False, quickPathfind = False, weighted = False):
     # menu header + author
     blit(menuHeader, (170,50))
     blit(menuAuthor, (1000, 140))
+    
+    # render legend
+    rect(BLACK, (1400, 310, 300, 450))
+    for i, text in enumerate(appLegend):
+        imgPosition = (1450, 325 + i * 75, 50, 50)
+        # handles variability in legend type, produces image
+        if text == ' - start':
+            fill(START_COLOUR, rect(START_COLOUR, imgPosition))
+        elif text == ' - target':
+            fill(END_COLOUR, rect(END_COLOUR, imgPosition))
+        elif text == ' - visited':
+            fill(VISITED_COLOUR, rect(VISITED_COLOUR, imgPosition))
+        elif text == ' - path':
+            fill(PATH_COLOUR, rect(PATH_COLOUR, imgPosition))
+        elif text == ' - obstacle':
+            fill(BLACK, rect(BLACK, imgPosition))
+        elif text == ' - cell weight':
+            fill(BLACK, rect(BLACK, imgPosition))
+            fill(WHITE, rect(WHITE, (imgPosition[0] + 5, imgPosition[1] + 5, 40, 40)))
+            blit(fontSM.render('7', True, BLACK), (imgPosition[0] + 20, imgPosition[1] + 10))
+        blit(fontSM.render(text, True, BLACK), (1550, 335 + i * 75))        
     
     pathfindingColours = [BLACK] * len(pathfindAlgs)
     mazeColours = [BLACK] * (len(mazeGenAlgs) + 3) # add 3 indices for quickMaze, quickMaze and weighting
