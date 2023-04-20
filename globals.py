@@ -1,12 +1,11 @@
 import pygame.font
-import os.path
 
 """
     This global file houses configurable variables that are going to be used across
     the main application (originating from main.py) 
 """
 
-cells = 100 # changes visible cell count - higher number == increase the number of tiles on screen
+cells = 40 # changes visible cell count - higher number == increase the number of tiles on screen
 windowWidth = 1920
 windowHeight = 1080
 
@@ -35,6 +34,14 @@ menuAuthor = fontSM.render('by Robert Whalen', True, BLACK)
 chooseMaze = fontMD.render('Maze generation algorithm(optional):', True, BLACK)
 # setup pathfinding algorithm option text
 choosePathfind = fontMD.render('Pathfinding algorithms:', True, BLACK)
+# legend text and bundling
+start = ' - start'
+end = ' - target'
+visited = ' - visited'
+path = ' - path'
+obstacle = ' - obstacle'
+weight = ' - cell weight'
+appLegend = (start, end, visited, path, obstacle, weight)
 
 # test global filename
 testFileName = 'results.json'
