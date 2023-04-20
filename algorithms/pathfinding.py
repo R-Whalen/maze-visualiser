@@ -42,12 +42,6 @@ def findPath(pos):
         
     return path
 
-def findBiPath(pos1, pos2):
-    path = findPath(pos2)[::-1]
-    path.extend(findPath(pos1)) # connect both paths and return
-    
-    return path
-
 def buildPath(path, start, end, weighted, board):
     for node in path[::-1]:
         node.colour = PATH_COLOUR
@@ -158,7 +152,9 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
                 else:
                     a, b = neighbour, current
                 
-                path = findBiPath(a, b)
+                path = findPath(a)[::-1]
+                path.extend(findPath(b)) # stitch both paths and return
+
                 return [path, balloonSize]
         
             # dijkstra assign values based on weight + distance from start        
