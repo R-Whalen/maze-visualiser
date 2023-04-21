@@ -42,12 +42,6 @@ def findPath(pos):
         
     return path
 
-def findBiPath(pos1, pos2):
-    path = findPath(pos2)[::-1]
-    path.extend(findPath(pos1)) # connect both paths and return
-    
-    return path
-
 def buildPath(path, start, end, weighted, board):
     for node in path[::-1]:
         node.colour = PATH_COLOUR
@@ -63,7 +57,7 @@ def aStar(start, end, board, quickPathfind, weighted):
     balloonSize = 0 # metric for testing
     
     # force start node to be our first node to "visit"
-    queue.put((cells * cells, entry, start)) # structure - score, no, node referenced, suggested parent
+    queue.put((0, entry, start)) # structure - score, no, node referenced, suggested parent
     
     while not queue.empty(): # while there are nodes we can visit
         current = queue.get()[2] # get from the top of the stack
@@ -74,20 +68,20 @@ def aStar(start, end, board, quickPathfind, weighted):
             path = findPath(end)
             return [path, balloonSize]
         
-        temp = manhattan(current, start) + current.weight
-        
         for neighbour in current.neighbours:
             if canMove(current, neighbour) is False:
-                continue # early traversal check
+                continue
+            
+            temp = current.distanceFromStart + neighbour.weight
+            
             if neighbour.visited is False and temp < neighbour.distanceFromStart:
-                neighbour.parent = current
-                neighbour.distanceFromStart = temp
-                # minimise distance to end, maximise distance from start              
-                score = math.sqrt(manhattan(neighbour, end)) - math.sqrt(neighbour.distanceFromStart)    
                 entry += 1
-                queue.put((score, entry, neighbour))
-                if balloonSize < queue.qsize(): balloonSize = queue.qsize()                
-
+                
+                neighbour.distanceFromStart = temp
+                neighbour.parent = current
+                
+                queue.put((temp + manhattan(neighbour, end), entry, neighbour))      
+                if queue.qsize() > balloonSize: balloonSize = queue.qsize()       
         # rerender at the end of each iteration if rendering enabled
         if quickPathfind is False:
             redrawWindow(start, end, board, weighted)
@@ -158,7 +152,9 @@ def bidirectionalDijkstra(start, end, board, quickPathfind, weighted):
                 else:
                     a, b = neighbour, current
                 
-                path = findBiPath(a, b)
+                path = findPath(a)[::-1]
+                path.extend(findPath(b)) # stitch both paths and return
+
                 return [path, balloonSize]
         
             # dijkstra assign values based on weight + distance from start        

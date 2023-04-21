@@ -1,0 +1,482 @@
+[
+    {
+        "algorithm": "a*",
+        "arraySize": 92,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 6.005287170410156,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 68,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.505084991455078,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 65,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 11.008977890014648,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 105,
+        "pathWeight": 249,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.004405975341797,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 68,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.513181686401367,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 247,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 10.008811950683594,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 72,
+        "pathWeight": 273,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504846572875977,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 62,
+        "pathWeight": 273,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 4.503965377807617,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 74,
+        "pathWeight": 273,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 12.51077651977539,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 100,
+        "pathWeight": 279,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504608154296875,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 62,
+        "pathWeight": 273,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.012502670288086,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 275,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 12.011051177978516,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 74,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 28.023719787597656,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 60,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 11.510610580444336,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 74,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 26.021957397460938,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 138,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 3.0024051666259766,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 60,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 25.521039962768555,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 531,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.012979507446289,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 65,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 17.51542091369629,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 65,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.005214691162109,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 73,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 16.01386070251465,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 181,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504369735717773,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 65,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 21.018028259277344,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 471,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504846572875977,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 102,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.506847381591797,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 90,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 8.006095886230469,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 72,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.506370544433594,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 88,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.0056915283203125,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 90,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 21.51775360107422,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 245,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504369735717773,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 176,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.003690719604492,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 111,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 8.50677490234375,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 79,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 12.01009750366211,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 48,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 5.504608154296875,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 111,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 42.035579681396484,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 217,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 3.001689910888672,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 16,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 28.023958206176758,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 15,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 9.008407592773438,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 13,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 24.5208740234375,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 131,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.0056915283203125,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 15,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 25.52199363708496,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 3519,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 11.00921630859375,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "a*",
+        "arraySize": 12,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 9.00721549987793,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bfs",
+        "arraySize": 10,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 3.0031204223632812,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "bidirectional dijkstra",
+        "arraySize": 18,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.513181686401367,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dfs",
+        "arraySize": 116,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 7.506847381591797,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 10,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 8.006572723388672,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "random",
+        "arraySize": 1,
+        "pathWeight": 1803,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 21.518230438232422,
+        "type": "Pathfinding"
+    }
+]
