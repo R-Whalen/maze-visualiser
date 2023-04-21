@@ -1,0 +1,402 @@
+[
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 36.03076934814453,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 68,
+        "pathWeight": 283,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 16.013383865356445,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 36.03076934814453,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 50,
+        "pathWeight": 255,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.012502670288086,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 36.53120994567871,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 71,
+        "pathWeight": 269,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 13.010978698730469,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 36.53097152709961,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 75,
+        "pathWeight": 263,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 17.014503479003906,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 37.03165054321289,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 60,
+        "pathWeight": 261,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.51365852355957,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 3414.431095123291,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 67,
+        "pathWeight": 271,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.2391045839402,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 3436.4500045776367,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 47,
+        "pathWeight": 525,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 23.019790649414062,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 3520.0226306915283,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 76,
+        "pathWeight": 345,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 23.01955223083496,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 3513.516426086426,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 36,
+        "pathWeight": 779,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 26.02243423461914,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 3573.568105697632,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 53,
+        "pathWeight": 375,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 21.018266677856445,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 54.54683303833008,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 115,
+        "pathWeight": 213,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 27.0235538482666,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 46.540021896362305,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 99,
+        "pathWeight": 273,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 23.520231246948242,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 58.05039405822754,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 118,
+        "pathWeight": 221,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 26.02243423461914,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 47.03974723815918,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 96,
+        "pathWeight": 241,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 15.012502670288086,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 47.03974723815918,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 101,
+        "pathWeight": 259,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 25.021076202392578,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 9.508609771728516,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 14,
+        "pathWeight": 3923,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 22.0181941986084,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 9.00721549987793,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 10,
+        "pathWeight": 2227,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 11.00921630859375,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 9.508132934570312,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 13,
+        "pathWeight": 2305,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 11.008977890014648,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 9.508132934570312,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 12,
+        "pathWeight": 4075,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 21.518707275390625,
+        "type": "Pathfinding"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "100 x 100",
+        "time": 9.506940841674805,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "dijkstra",
+        "arraySize": 13,
+        "pathWeight": 1941,
+        "quickMaze": null,
+        "quickPathfind": true,
+        "size": "100 x 100",
+        "time": 9.508132934570312,
+        "type": "Pathfinding"
+    }
+]
