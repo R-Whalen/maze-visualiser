@@ -1,0 +1,402 @@
+[
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 329.2825222015381,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 335.28780937194824,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 329.78272438049316,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 334.78808403015137,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 333.2862854003906,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 349.80034828186035,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 346.7974662780762,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 340.29173851013184,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 327.28052139282227,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "eller",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 344.29430961608887,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 145090.55519104004,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 143830.4727077484,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 148765.2096748352,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 144901.89290046692,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 141280.78413009644,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 143016.27445220947,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 143119.86255645752,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 142807.0945739746,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 143737.39290237427,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "kruskal",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 141028.5677909851,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 648.0560302734375,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 799.6866703033447,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 654.5619964599609,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 749.1433620452881,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 1072.9212760925293,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 852.7319431304932,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 741.1360740661621,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 640.549898147583,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 987.3476028442383,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "prim",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 999.8581409454346,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 69.05937194824219,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 69.05865669250488,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 65.05608558654785,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 68.55916976928711,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 66.05696678161621,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 65.55628776550293,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 67.05760955810547,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 67.05832481384277,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 66.05696678161621,
+        "type": "Maze Generation"
+    },
+    {
+        "algorithm": "backtracking",
+        "arraySize": null,
+        "pathWeight": null,
+        "quickMaze": true,
+        "quickPathfind": null,
+        "size": "250 x 250",
+        "time": 68.55893135070801,
+        "type": "Maze Generation"
+    }
+]
